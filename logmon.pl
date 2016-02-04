@@ -44,6 +44,7 @@ sub read_conf {
 my ( $target, $message, $action );
 my $check_config = $_[ 0 ];
 
+    %Config = ();
     open ( IN, "<$Conf_file" );
     while (<IN>) {
         chomp; $_ =~ s/^\s+//; $_ =~ s/\s+$//; $_=~ s/#.*$//;
@@ -101,10 +102,10 @@ my ( $tail_num, $target, $message );
 
     $SIG{HUP}  = \&catch_hup;
     $SIG{TERM} = \&catch_term;
-    read_conf( options() );
 
     $tail_num = 0;
     while ( ! $Terminate ) {
+        read_conf( options() );
         foreach $target ( keys %Config ) {
             watch_for( $target, $tail_num );
         }
