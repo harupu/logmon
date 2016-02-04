@@ -25,7 +25,7 @@ logmon
 Actions
 ```
 
-<%%%%> is replaced with the line of message.
+<%%%%> is replaced with the line matched.
 
 ### Example
 ```
