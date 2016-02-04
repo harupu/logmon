@@ -43,3 +43,20 @@ echo "<%%%%>" | mail -s "Warning in /var/log/messages" -r system@example.com adm
 (authentication failure)
 echo "<%%%%>" | mail -s "Authentication failure" -r system@example.com admin@example.com
 ```
+
+You can check if the config file is parsed as intented.
+```
+# /etc/logmon/logmon.pl -c
+Config file: /etc/logmon/logmon.conf
+
+Logfile: /var/log/messages
+  Message: (Warn|warn)
+    Action: echo "<%%%%>" | mail -s "Warning in /var/log/messages" -r system@example.com admin@example.com
+  Message: (Error|ERROR|error)
+    Action: echo "<%%%%>" | mail -s "Error in /var/log/messages" -r system@example.com admin@example.com
+    Action: /usr/bin/wall "Error in /var/log/messages"
+
+Logfile: /var/log/secure
+  Message: (authentication failure)
+    Action: echo "<%%%%>" | mail -s "Authentication failure" -r system@example.com admin@example.com
+```
