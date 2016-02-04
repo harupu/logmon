@@ -77,9 +77,7 @@ my ( $tail_num, $target, $message, $action, $new_action, $line );
 
     ( $target, $tail_num ) = @_;
     unless ( fork() ) {      # Child
-        $SIG{HUP}  = \&catch_hup;
-        $SIG{TERM} = \&catch_term;
-        open ( IN, "tail -n$tail_num -F $target|" );
+        open ( IN, "tail -n $tail_num -F $target|" );
         while ( <IN> ) {
             foreach $message ( keys %{$Config{$target}} ) {
                 if ( $_ =~ m/$message/ ) {
