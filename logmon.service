@@ -1,0 +1,11 @@
+[Unit]
+Description=Log monitor service
+After=syslog.target network.target auditd.service
+
+[Service]
+ExecStart=/etc/logmon/logmon.pl
+ExecStop=/bin/kill -TERM $MAINPID
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target
