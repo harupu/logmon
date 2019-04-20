@@ -1,10 +1,12 @@
-logmon
+logmon with supervisord
 ======
 
 ## Setup
 ```
 ./setup.sh
 ```
+
+If 'no such process' error is shown, please reload supervisord daemon."
 
 ## Operations
 ### Start/Stop/Reload
